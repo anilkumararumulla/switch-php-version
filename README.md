@@ -1,4 +1,4 @@
-# Switch-php-version
+# Switch PHP Version
 
 Using this script you can swithc the PHP version 
 
