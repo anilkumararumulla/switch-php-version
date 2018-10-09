@@ -3,6 +3,7 @@
 switch_version()
 {
     echo "Switching to PHP"$version
+    sudo apt install php$version-dev
     sudo a2dismod php*
     sudo a2enmod php$version
     sudo service apache2 restart
@@ -16,22 +17,20 @@ switch_version()
 
 install_version()
 {
-    while true; do
+    # while true; do
         read -p "PHP$version is not installed `echo '\n '`Would like to install this PHP$version [Y/n] ?" answer
         answer=${answer:-yes}
         case $answer in
-            [Yy]* ) make install; break;;
+            [Yy]* ) sudo add-apt-repository ppa:ondrej/php; sudo apt update; sudo apt install php$version; sudo apt install php$version-dev break;;
             [Nn]* ) exit;;
-            * ) echo "Please answer yes or no.";;
+            * ) echo "In Valid Entry. Abort"; exit;;
         esac
-    done
-    sudo apt update
-    sudo apt install tree
+    # done
 }
 
 read -p "Please enter the version to switch (Ex. 5.6): `echo '\n> '`" version
 
-dpkg -s $version 2> /dev/null
+dpkg -s php$version 2> /dev/null
 
 if [ $? -eq 0 ]; then
     switch_version
