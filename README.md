@@ -1,6 +1,6 @@
 # Switch PHP Version
 
-Using this script you can swithc the PHP version 
+Using this script you can switch the PHP version 
 
 ```
 sh switch.sh
